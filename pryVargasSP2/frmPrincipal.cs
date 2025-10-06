@@ -12,7 +12,7 @@ namespace pryVargasSP2
         double CostoDiario = 0;
         double CantidadPersonas = 0;
         double CostoAdicional = 0;
-         
+
         private void frmPrincipal_Load(object sender, EventArgs e)
         {
             Inicio();
@@ -70,7 +70,7 @@ namespace pryVargasSP2
 
         private void btnAceptar_Click(object sender, EventArgs e)
         {
-            if (cmbCabaña.SelectedIndex == 0 )
+            if (cmbCabaña.SelectedIndex == 0)
             {
                 CostoDiario = 20;
                 CantidadPersonas = Convert.ToInt32(nudPersonas.Value);
@@ -89,11 +89,11 @@ namespace pryVargasSP2
                     {
                         CostoFinal = ((CostoDiario + (CantidadPersonas * 1) + CostoAdicional) * Convert.ToInt32(nudDias.Value)) * 1.2;
                     }
-                    
+
                 }
                 MessageBox.Show("El precio final es " + "" + CostoFinal, "Precio final", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 Inicio();
-                
+
             }
             if (cmbCabaña.SelectedIndex == 1)
             {
@@ -121,7 +121,7 @@ namespace pryVargasSP2
             }
         }
 
-        private void CalcularAdicional ()
+        private void CalcularAdicional()
         {
             if (chkCocina.Checked == true)
             {
@@ -137,7 +137,7 @@ namespace pryVargasSP2
             }
         }
 
-        private void Inicio ()
+        private void Inicio()
         {
             //Deshabilitamos el cmbTarjeta
             cmbTarjeta.Enabled = false;
@@ -151,6 +151,24 @@ namespace pryVargasSP2
             //Dejamos el focus en cmbCabaña
             cmbCabaña.Focus();
 
+            //Limpiamos controles
+            nudDias.Value = 1;
+            nudPersonas.Value = 1;
+            txtNombre.Text = "";
+            txtTelefono.Text = "";
+            chkHeladera.Checked = false;
+            chkTelevisor.Checked = false;
+            chkCocina.Checked = false;
+
+            //Limpiamos las variables
+            CostoFinal = 0;
+            CostoDiario = 0;
+            CantidadPersonas = 0;
+            CostoAdicional = 0;
+        }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
             //Limpiamos controles
             nudDias.Value = 1;
             nudPersonas.Value = 1;

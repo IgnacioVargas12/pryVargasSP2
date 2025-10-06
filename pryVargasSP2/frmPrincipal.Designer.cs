@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmPrincipal));
             lblTipoCabaña = new Label();
             lblTipo = new Label();
             lblPersonas = new Label();
@@ -50,6 +51,7 @@
             chkCocina = new CheckBox();
             chkHeladera = new CheckBox();
             chkTelevisor = new CheckBox();
+            btnCancelar = new Button();
             ((System.ComponentModel.ISupportInitialize)nudPersonas).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudDias).BeginInit();
             SuspendLayout();
@@ -265,11 +267,24 @@
             chkTelevisor.Text = "Televisor";
             chkTelevisor.UseVisualStyleBackColor = true;
             // 
+            // btnCancelar
+            // 
+            btnCancelar.Enabled = false;
+            btnCancelar.Font = new Font("Segoe UI", 12F);
+            btnCancelar.Location = new Point(357, 346);
+            btnCancelar.Name = "btnCancelar";
+            btnCancelar.Size = new Size(102, 38);
+            btnCancelar.TabIndex = 17;
+            btnCancelar.Text = "Cancelar";
+            btnCancelar.UseVisualStyleBackColor = true;
+            btnCancelar.Click += btnCancelar_Click;
+            // 
             // frmPrincipal
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(591, 396);
+            Controls.Add(btnCancelar);
             Controls.Add(chkTelevisor);
             Controls.Add(chkHeladera);
             Controls.Add(chkCocina);
@@ -293,6 +308,7 @@
             Controls.Add(lblTipo);
             Controls.Add(lblTipoCabaña);
             FormBorderStyle = FormBorderStyle.FixedDialog;
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "frmPrincipal";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Reservas de cabañas";
@@ -327,5 +343,6 @@
         private CheckBox chkCocina;
         private CheckBox chkHeladera;
         private CheckBox chkTelevisor;
+        private Button btnCancelar;
     }
 }
