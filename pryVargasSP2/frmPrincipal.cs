@@ -12,6 +12,27 @@ namespace pryVargasSP2
         double CostoDiario = 0;
         double CantidadPersonas = 0;
         double CostoAdicional = 0;
+        int Indice = 0;
+        string auxCocina = "";
+        string auxHeladera = "";
+        string auxTelevisor = "";
+        string auxEfectivo = "";
+
+        //Declaración de struct
+        public struct Datos 
+        {
+            public string TipoCabaña;
+            public double CostoFinal;
+            public int CantidadDias;
+            public double CantidadPersonas;
+            public string FormaDePago;
+            public string Nombre;
+            public double Telefono;
+            public string Adicionales;
+        }
+
+        //Declaración array
+        public Datos[] vecDatos = new Datos[20];
 
         private void frmPrincipal_Load(object sender, EventArgs e)
         {
@@ -78,6 +99,7 @@ namespace pryVargasSP2
                 if (optEfectivo.Checked == true)
                 {
                     CostoFinal = (CostoDiario + (CantidadPersonas * 1) + CostoAdicional) * Convert.ToInt32(nudDias.Value);
+                    auxEfectivo = "Efectivo";
                 }
                 if (optTarjeta.Checked == true)
                 {
@@ -91,10 +113,9 @@ namespace pryVargasSP2
                     }
 
                 }
-                MessageBox.Show("El precio final es " + "" + CostoFinal, "Precio final", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                Inicio();
-
+                MessageBox.Show("El precio final es " + "$" + CostoFinal, "Precio final", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
+
             if (cmbCabaña.SelectedIndex == 1)
             {
                 CostoDiario = 34;
@@ -116,9 +137,30 @@ namespace pryVargasSP2
                     }
 
                 }
-                MessageBox.Show("El precio final es " + "" + CostoFinal, "Precio final", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                Inicio();
+                MessageBox.Show("El precio final es " + "$" + CostoFinal, "Precio final", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
+
+            if (Indice < 20)
+            {
+                //Grabamos los datos en el array
+                vecDatos[Indice].TipoCabaña = cmbCabaña.Text;
+                vecDatos[Indice].CantidadPersonas = CantidadPersonas;
+                vecDatos[Indice].CantidadDias = Convert.ToInt32(nudDias.Value);
+                vecDatos[Indice].Adicionales = auxCocina + " " + auxHeladera + " " + auxTelevisor;
+                vecDatos[Indice].FormaDePago = auxEfectivo + " " + cmbTarjeta.Text;
+                vecDatos[Indice].CostoFinal = CostoFinal;
+                vecDatos[Indice].Nombre = txtNombre.Text;
+                vecDatos[Indice].Telefono = Convert.ToDouble(txtTelefono.Text);
+                Indice++;
+            }
+            else
+            {
+                MessageBox.Show("El array se encuentra lleno", "Array lleno", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                btnAceptar.Enabled = false;
+            }
+
+                //Limpiamos controles y variables
+                Inicio();
         }
 
         private void CalcularAdicional()
@@ -126,14 +168,17 @@ namespace pryVargasSP2
             if (chkCocina.Checked == true)
             {
                 CostoAdicional += 1;
+                auxCocina = "Cocina";
             }
             if (chkHeladera.Checked == true)
             {
                 CostoAdicional += 1.50;
+                auxHeladera = "Heladera";
             }
             if (chkTelevisor.Checked == true)
             {
                 CostoAdicional += 2;
+                auxTelevisor = "Televisor";
             }
         }
 
@@ -165,6 +210,10 @@ namespace pryVargasSP2
             CostoDiario = 0;
             CantidadPersonas = 0;
             CostoAdicional = 0;
+            auxTelevisor = "";
+            auxHeladera = "";
+            auxCocina = "";
+            auxEfectivo = "";
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
